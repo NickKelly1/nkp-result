@@ -3,11 +3,11 @@
  *
  * Represents successful or failed operations
  */
-type Result<T, F = unknown> =
+export type Result<T, F = unknown> =
   | Result.Success<T>
   | Result.Fail<F>;
 
-namespace Result {
+export namespace Result {
   /**
    * Type of result
    */
@@ -81,5 +81,3 @@ namespace Result {
     };
   }
 }
-
-export default Result;
