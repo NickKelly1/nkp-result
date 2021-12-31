@@ -57,6 +57,12 @@ npm install @nkp/result
 yarn add @nkp/result
 ```
 
+### pnpm
+
+```sh
+pnpm add @nkp/linked-list
+```
+
 ### Exports
 
 `@nkp/result` targets CommonJS and ES modules. To utilise ES modules consider using a bundler like `webpack` or `rollup`.
