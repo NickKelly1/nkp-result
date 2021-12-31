@@ -1,7 +1,7 @@
 {
   "name": "@nkp/result",
   "sideEffects": false,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Result represents the output of an operation that either succeded or failed.",
   "main": "cjs/index.js",
   "module": "es/index.js",
