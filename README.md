@@ -1,7 +1,7 @@
 # @nkp/result
 
 ![npm version](https://badge.fury.io/js/%40nkp%2Fresult.svg)
-[![Node.js Package](https://github.com/NickKelly1/result/actions/workflows/release.yml/badge.svg)](https://github.com/NickKelly1/nkp-result/actions/workflows/release.yml)
+[![Node.js Package](https://github.com/NickKelly1/nkp-result/actions/workflows/release.yml/badge.svg)](https://github.com/NickKelly1/nkp-result/actions/workflows/release.yml)
 ![Known Vulnerabilities](https://snyk.io/test/github/NickKelly1/nkp-result/badge.svg)
 
 Result represents the output of an operation that either succeded or failed.
