@@ -29,8 +29,6 @@ if (isSuccess(result)) {
 if (isFail(result)) {
   const message: string = result.value;
 }
-
-Result.success();
 ```
 
 ## Table of contents
