@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.4 - 2021-12-31
+
+### Changed
+
+- Removed `Result` namespace
+
 ## 0.0.3 - 2021-12-31
 
 ### Added

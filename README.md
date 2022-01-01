@@ -7,26 +7,26 @@
 Result represents the output of an operation that either succeded or failed.
 
 ```ts
-import { Result } from '@nkp/result';
+import { Result, fail, success, Fail, Success, isSuccess, isFail } from '@nkp/result';
 
 function work(): Result<number, string> {
   const input = 'this is user input';
-  if (input.length > 5){ 
-    const fail: Result.Fail<string> = Result.fail('input must be less-than 5 characters long');
-    return fail;
+  if (input.length >= 5){ 
+    const result: Fail<string> = fail('input must be less-than 5 characters long');
+    return result;
   }
-  const success = Result.Success<number> = input.length;
-  return success;
+  const result: Success<number> = success(input.length);
+  return result;
 }
 
 
 const result = work();
 
-if (Result.isSuccess(result)) {
+if (isSuccess(result)) {
   const success: number = reuslt.value;
 }
 
-if (Result.isFail(result)) {
+if (isFail(result)) {
   const message: string = result.value;
 }
 
