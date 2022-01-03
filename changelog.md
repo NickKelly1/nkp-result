@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.6 - 2022-01-02
+
+### Changed
+
+- Went back to `Result` namespace
+- Updated Readme.md
+- Updated dependencies
+
 ## 0.0.5 - 2021-12-31
 
 ### Changed

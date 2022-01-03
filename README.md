@@ -4,29 +4,27 @@
 [![deploy status](https://github.com/NickKelly1/nkp-result/actions/workflows/release.yml/badge.svg)](https://github.com/NickKelly1/nkp-result/actions/workflows/release.yml)
 [![known vulnerabilities](https://snyk.io/test/github/NickKelly1/nkp-result/badge.svg)](https://snyk.io/test/github/NickKelly1/nkp-result)
 
-Result represents the output of an operation that either succeded or failed.
+Mimilar zero dependency utility library for the Result type. Result represents the output of an operation that either succeded or failed.
 
 ```ts
-import { Result, fail, success, Fail, Success, isSuccess, isFail } from '@nkp/result';
+import { Result } from '@nkp/result';
 
 function work(): Result<number, string> {
   const input = 'this is user input';
   if (input.length >= 5){ 
-    const result: Fail<string> = fail('input must be less-than 5 characters long');
-    return result;
+    return Result.fail('input must be less-than 5 characters long');
   }
-  const result: Success<number> = success(input.length);
-  return result;
+  return Result.success(input.length);
 }
 
 
 const result = work();
 
-if (isSuccess(result)) {
+if (Result.isSuccess(result)) {
   const success: number = reuslt.value;
 }
 
-if (isFail(result)) {
+if (Result.isFail(result)) {
   const message: string = result.value;
 }
 ```
