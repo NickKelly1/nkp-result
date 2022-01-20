@@ -1,11 +1,30 @@
 /**
- * Generic result types
+ * Result represents the output of an operation that may have succeded or failed
  *
- * Represents an operation which succeed or failed
+ * Result is the discriminated union of the {@link Result.Success} type and
+ * {@link Result.Fail} type, differentiated only by their `type` property
+ *
+ * To determine the type of a `Result` it's recommended to use one of the
+ * [type guard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-guards-and-differentiating-types)
+ * functions: {@link Result.isSuccess} or {@link Result.isFail}
  */
 export type Result<T, F = unknown> =
   | Result.Success<T>
   | Result.Fail<F>;
+
+/**
+ * Fail type
+ *
+ * @alias {@link Result.Fail}
+ */
+export type Fail<F = unknown> = Result.Fail<F>;
+
+/**
+ * Success type
+ *
+ * @alias {@link Result.Success}
+ */
+export type Success<T> = Result.Success<T>;
 
 export namespace Result {
   /**
@@ -41,8 +60,8 @@ export namespace Result {
    * @param output    result output
    * @returns         whether the output is a "success" result
    */
-  export function isSuccess<T, F>(output: Result<T, F>): output is Success<T> {
-    return output.type === Type.Success;
+  export function isSuccess<T, F>(output: Result<T, F>): output is Result.Success<T> {
+    return output.type === Result.Type.Success;
   }
 
   /**
@@ -51,8 +70,8 @@ export namespace Result {
    * @param output    result output
    * @returns         whether the output is a "fail" result
    */
-  export function isFail<T, F>(output: Result<T, F>): output is Fail<F> {
-    return output.type === Type.Fail;
+  export function isFail<T, F>(output: Result<T, F>): output is Result.Fail<F> {
+    return output.type === Result.Type.Fail;
   }
 
   /**
@@ -61,9 +80,9 @@ export namespace Result {
    * @param value     success value
    * @returns         success result
    */
-  export function success<T>(value: T): Success<T> {
+  export function success<T>(value: T): Result.Success<T> {
     return {
-      type: Type.Success,
+      type: Result.Type.Success,
       value,
     };
   }
@@ -74,10 +93,56 @@ export namespace Result {
    * @param value   fail value
    * @returns       fail result
    */
-  export function fail<F>(value: F): Fail<F> {
+  export function fail<F>(value: F): Result.Fail<F> {
     return {
-      type: Type.Fail,
+      type: Result.Type.Fail,
       value,
     };
   }
 }
+
+/**
+ * Type of result
+ * @alias {@link Result.Type}
+ */
+export const Type = Result.Type;
+
+/**
+ * Create a "success" result
+ *
+ * @param value     success value
+ * @returns         success result
+ *
+ * @alias {@link Result.success}
+ */
+export const success = Result.success;
+
+/**
+ * Create a "fail" result
+ *
+ * @param value   fail value
+ * @returns       fail result
+ *
+ * @alias {@link Result.fail}
+ */
+export const fail = Result.fail;
+
+/**
+ * Is the output a "success" result
+ *
+ * @param output    result output
+ * @returns         whether the output is a "success" result
+ *
+ * @alias @see {@link Result.isSuccess}
+ */
+export const isSuccess = Result.isSuccess;
+
+/**
+ * Create a "fail" result
+ *
+ * @param value   fail value
+ * @returns       fail result
+ *
+ * @alias {@link Result.isFail}
+ */
+export const isFail = Result.isFail;

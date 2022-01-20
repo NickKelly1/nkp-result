@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0 - 2022-01-19
+
+Released v1.0.0
+
+### Added
+
+- Added support for non-namespaced imports (don't need to use the Result
+  namespace)
+
 ## 0.0.6 - 2022-01-02
 
 ### Changed
