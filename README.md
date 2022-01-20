@@ -56,7 +56,7 @@ yarn add @nkp/result
 ### pnpm
 
 ```sh
-pnpm add @nkp/linked-list
+pnpm add @nkp/result
 ```
 
 ### Exports
