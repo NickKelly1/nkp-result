@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.3 - 2022-02-07
+
+### Changed
+
+- Updated dependencies
+- Changed code comments
+
 ## 1.0.2 - 2022-02-07
 
 ### Changed

@@ -1,8 +1,8 @@
 /**
  * Result represents the output of an operation that may have succeded or failed
  *
- * Result is the discriminated union of the {@link Result.Success} type and
- * {@link Result.Fail} type, differentiated only by their `type` property
+ * Result is the discriminated union of the {@link Result.Success} and
+ * {@link Result.Fail} types, distinguished by their `type` property
  *
  * To determine the type of a `Result` it's recommended to use one of the
  * [type guard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-guards-and-differentiating-types)
