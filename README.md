@@ -4,7 +4,7 @@
 [![deploy status](https://github.com/NickKelly1/nkp-result/actions/workflows/release.yml/badge.svg)](https://github.com/NickKelly1/nkp-result/actions/workflows/release.yml)
 [![known vulnerabilities](https://snyk.io/test/github/NickKelly1/nkp-result/badge.svg)](https://snyk.io/test/github/NickKelly1/nkp-result)
 
-Mimilar zero dependency utility library for the Result type. Result represents the output of an operation that either succeded or failed.
+Minimal zero dependency utility library for the Result type. Result represents the output of an operation that either succeded or failed.
 
 ```ts
 import { Result } from '@nkp/result';
@@ -31,13 +31,16 @@ if (Result.isFail(result)) {
 
 ## Table of contents
 
+- [Exports](#exports)
 - [Installation](#installation)
   - [npm](#npm)
   - [yarn](#yarn)
   - [pnpm](#pnpm)
-  - [Exports](#exports)
-- [Updating Dependencies](#updating-dependencies)
 - [Publishing](#publishing)
+
+## Exports
+
+`@nkp/result` exports both CommonJS and ES modules.
 
 ## Installation
 
@@ -57,34 +60,6 @@ yarn add @nkp/result
 
 ```sh
 pnpm add @nkp/result
-```
-
-### Exports
-
-`@nkp/result` targets CommonJS and ES modules. To utilise ES modules consider using a bundler like `webpack` or `rollup`.
-
-## Updating dependencies
-
-To update dependencies run one of
-
-```sh
-# if npm
-# update package.json
-npx npm-check-updates -u
-# install
-npm install
-
-# if yarn
-# update package.json
-yarn create npm-check-updates -u
-# install
-yarn
-
-# if pnpm
-# update package.json
-pnpx npm-check-updates -u
-# install
-pnpm install
 ```
 
 ## Publishing

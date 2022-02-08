@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.2 - 2022-02-07
+
+### Changed
+
+- Updated readme.md
+- Devop: Updated CI process
+
 ## 1.0.1 - 2022-01-19
 
 ### Changed
