@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.4 - 2022-02-07
+
+### Changed
+
+- Fixed package.json exports
+
 ## 1.0.3 - 2022-02-07
 
 ### Changed

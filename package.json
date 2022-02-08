@@ -3,8 +3,14 @@
   "sideEffects": false,
   "version": "1.0.3",
   "description": "Result represents the output of an operation that either succeded or failed.",
-  "main": "cjs/index.js",
-  "module": "es/index.js",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "types": "./types/index.d.ts",
+  "exports": {
+    "import": "./esm/index.js",
+    "require": "./cjs/index.js",
+    "types": "./types/index.d.js"
+  },
   "author": "Nick Kelly",
   "homepage": "https://github.com/NickKelly1/nkp-result.git#readme",
   "readme": "https://github.com/NickKelly1/nkp-result.git#readme",
