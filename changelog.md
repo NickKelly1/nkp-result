@@ -6,6 +6,7 @@
 
 - Updated readme.md
 - Devop: Updated CI process
+- Devop: Updated build
 
 ## 1.0.1 - 2022-01-19
 
