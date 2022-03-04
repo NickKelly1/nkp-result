@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.1.0 - 2022-03-04
+
+### Added
+
+- `unwrapOk`
+- `OK`
+- `ERR`
+- `Result.OK`
+- `Result.ERR`
+
+### Removed
+
+- `Result.Type`
+
 ## 2.0.0 - 2022-03-04
 
 Major release

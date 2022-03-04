@@ -8,50 +8,34 @@
  * @see [type guard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-guards-and-differentiating-types)
  * functions: {@link Result.isOk} or {@link Result.isErr}
  */
-export type Result<T, F = unknown> =
+export type Result<T, E = unknown> =
   | Result.Ok<T>
-  | Result.Err<F>;
-
-/**
- * Fail type
- *
- * @alias {@link Result.Err}
- */
-export type Err<F = unknown> = Result.Err<F>;
-
-/**
- * Success type
- *
- * @alias {@link Result.Ok}
- */
-export type Ok<T> = Result.Ok<T>;
+  | Result.Err<E>;
 
 export namespace Result {
-  /**
-   * Type of result
-   */
-  export enum Type {
-    Ok = 'Ok',
-    Err = 'Err',
+  /** Ok discriminator type */
+  export type OK = 'OK';
+
+  /** Ok discriminator value */
+  export const OK: OK = 'OK';
+
+  /** Err discriminator type */
+  export type ERR = 'ERR';
+
+  /** Err discriminator value */
+  export const ERR: ERR = 'ERR';
+
+  /** Ok type */
+  export interface Ok<T> {
+    type: OK;
+    value: T;
   }
 
-  /**
-   * Base result
-   */
-  export interface Base<U, T extends Type> {
-    type: T
-    value: U
+  /** ERR type */
+  export interface Err<E = unknown> {
+    type: ERR;
+    value: E;
   }
-
-  /**
-   * Success type
-   */
-  export interface Ok<T> extends Base<T, Type.Ok> {}
-
-  /**
-   * Failure type
-   */
-  export interface Err<F = unknown> extends Base<F, Type.Err> {}
 
   /**
    * Is the result an "ok"
@@ -60,7 +44,7 @@ export namespace Result {
    * @returns         whether the output is an "ok"
    */
   export function isOk<T, F>(output: Result<T, F>): output is Result.Ok<T> {
-    return output.type === Result.Type.Ok;
+    return output.type === Result.OK;
   }
 
   /**
@@ -70,7 +54,7 @@ export namespace Result {
    * @returns         whether the result is an "err"
    */
   export function isErr<T, F>(result: Result<T, F>): result is Result.Err<F> {
-    return result.type === Result.Type.Err;
+    return result.type === Result.ERR;
   }
 
   /**
@@ -81,7 +65,7 @@ export namespace Result {
    */
   export function ok<T>(value: T): Result.Ok<T> {
     return {
-      type: Result.Type.Ok,
+      type: OK,
       value,
     };
   }
@@ -94,7 +78,7 @@ export namespace Result {
    */
   export function err<F>(value: F): Result.Err<F> {
     return {
-      type: Result.Type.Err,
+      type: ERR,
       value,
     };
   }
@@ -114,11 +98,31 @@ export namespace Result {
   }
 }
 
+/** Ok discriminator type */
+export type OK = Result.OK
+
+/** Ok discriminator value */
+export const OK = Result.OK;
+
+/** Err discriminator type */
+export type ERR = Result.ERR;
+
+/** Err discriminator value */
+export const ERR = Result.ERR;
+
 /**
- * Type of result
- * @alias {@link Result.Type}
+ * Err type
+ *
+ * @alias {@link Result.Err}
  */
-export const Type = Result.Type;
+export type Err<F = unknown> = Result.Err<F>;
+
+/**
+ * Ok type
+ *
+ * @alias {@link Result.Ok}
+ */
+export type Ok<T> = Result.Ok<T>;
 
 /**
  * Create an "ok" result
@@ -159,3 +163,15 @@ export const isOk = Result.isOk;
  * @alias {@link Result.isErr}
  */
 export const isErr = Result.isErr;
+
+/**
+ * Assert the result is Ok and return it's inner value
+ *
+ *
+ * @param result    target result
+ * @returns         inner value
+ * @throws          Error
+ *
+ * @alias {@link Result.unwrap}
+ */
+export const unwrapOk = Result.unwrap;
