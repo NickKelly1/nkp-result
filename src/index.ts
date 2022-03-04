@@ -53,32 +53,31 @@ export namespace Result {
    */
   export interface Err<F = unknown> extends Base<F, Type.Err> {}
 
-
   /**
-   * Is the output a "success" result
+   * Is the result an "ok"
    *
-   * @param output    result output
-   * @returns         whether the output is a "success" result
+   * @param output    result
+   * @returns         whether the output is an "ok"
    */
   export function isOk<T, F>(output: Result<T, F>): output is Result.Ok<T> {
     return output.type === Result.Type.Ok;
   }
 
   /**
-   * Is the output a "fail" result
+   * Is the result an "err"
    *
-   * @param output    result output
-   * @returns         whether the output is a "fail" result
+   * @param result    result
+   * @returns         whether the result is an "err"
    */
-  export function isErr<T, F>(output: Result<T, F>): output is Result.Err<F> {
-    return output.type === Result.Type.Err;
+  export function isErr<T, F>(result: Result<T, F>): result is Result.Err<F> {
+    return result.type === Result.Type.Err;
   }
 
   /**
-   * Create a "success" result
+   * Create an "ok" result
    *
-   * @param value     success value
-   * @returns         success result
+   * @param value     ok value
+   * @returns         ok result
    */
   export function ok<T>(value: T): Result.Ok<T> {
     return {
@@ -88,16 +87,30 @@ export namespace Result {
   }
 
   /**
-   * Create a "fail" result
+   * Create an "err" result
    *
-   * @param value   fail value
-   * @returns       fail result
+   * @param value   err value
+   * @returns       err result
    */
   export function err<F>(value: F): Result.Err<F> {
     return {
       type: Result.Type.Err,
       value,
     };
+  }
+
+  /**
+   * Assert the result is Ok and return it's inner value
+   *
+   * @param result    target result
+   * @returns         inner value
+   * @throws          Error
+   */
+  export function unwrap<T, E>(result: Result<T, E>): T {
+    if (isErr(result)) {
+      throw new Error('failed to unwrap result: result is err');
+    }
+    return result.value;
   }
 }
 
@@ -108,40 +121,40 @@ export namespace Result {
 export const Type = Result.Type;
 
 /**
- * Create a "success" result
+ * Create an "ok" result
  *
- * @param value     success value
- * @returns         success result
+ * @param value     ok value
+ * @returns         ok result
  *
  * @alias {@link Result.ok}
  */
-export const ok = Result.ok;
+export const toOk = Result.ok;
 
 /**
- * Create a "fail" result
+ * Create an "err" result
  *
- * @param value   fail value
- * @returns       fail result
+ * @param value   err value
+ * @returns       err result
  *
  * @alias {@link Result.err}
  */
-export const err = Result.err;
+export const toErr = Result.err;
 
 /**
- * Is the output a "success" result
+ * Is the result an "ok"
  *
- * @param output    result output
- * @returns         whether the output is a "success" result
+ * @param output    result
+ * @returns         whether the output is an "ok"
  *
- * @alias @see {@link Result.isOk}
+ * @alias {@link Result.isOk}
  */
 export const isOk = Result.isOk;
 
 /**
- * Create a "fail" result
+ * Is the result an "err"
  *
- * @param value   fail value
- * @returns       fail result
+ * @param result    result
+ * @returns         whether the result is an "err"
  *
  * @alias {@link Result.isErr}
  */

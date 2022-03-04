@@ -12,19 +12,19 @@ import { Result } from '@nkp/result';
 function work(): Result<number, string> {
   const input = 'this is user input';
   if (input.length >= 5){ 
-    return Result.fail('input must be less-than 5 characters long');
+    return Result.err('input must be less-than 5 characters long');
   }
-  return Result.success(input.length);
+  return Result.ok(input.length);
 }
 
 
 const result = work();
 
-if (Result.isSuccess(result)) {
+if (Result.isOk(result)) {
   const success: number = reuslt.value;
 }
 
-if (Result.isFail(result)) {
+if (Result.isErr(result)) {
   const message: string = result.value;
 }
 ```

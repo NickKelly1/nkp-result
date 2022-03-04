@@ -17,11 +17,17 @@ Major release
 - `Result.fail` -> `Result.err`
 - `Result.isFail` -> `Result.isErr`
 - `Success` -> `Ok`
-- `success` -> `ok`
+- `success` -> `toOk`
 - `isSuccess` -> `isOk`
 - `Fail` -> `Err`
-- `fail` -> `err`
+- `fail` -> `toErr`
 - `isFail` -> `isErr`
+
+### Non-Breaking Changes
+
+#### Added
+
+- `Result.unwrap`
 
 ## 1.0.4 - 2022-02-07
 

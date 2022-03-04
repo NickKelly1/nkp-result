@@ -1,7 +1,15 @@
-import { isErr, isOk, Result, ok, Type, err } from '.';
+import { isErr, isOk, Result, toOk, Type, toErr } from '.';
 
 describe('Result', () => {
   // namespaced
+  describe('Result.unwrap', () => {
+    it('should throw if is err', () => {
+      expect(() => Result.unwrap(Result.err('err'))).toThrow();
+    });
+    it('should succeed if is ok', () => {
+      expect(Result.unwrap(Result.ok(5))).toEqual(5);
+    });
+  });
   describe('Result.ok', () => {
     it('should create an ok type', () => {
       expect(Result.ok(5)).toEqual({ type: Result.Type.Ok, value: 5, });
@@ -30,30 +38,30 @@ describe('Result', () => {
   });
 
   // not namespaced
-  describe('ok', () => {
+  describe('toOk', () => {
     it('should create an ok type', () => {
-      expect(ok(5)).toEqual({ type: Type.Ok, value: 5, });
+      expect(toOk(5)).toEqual({ type: Type.Ok, value: 5, });
     });
   });
   describe('isOk', () => {
     it('should detect an ok', () => {
-      expect(isOk(ok(5))).toBeTruthy();
+      expect(isOk(toOk(5))).toBeTruthy();
     });
     it('should detect an err', () => {
-      expect(isOk(err(5))).toBeFalsy();
+      expect(isOk(toErr(5))).toBeFalsy();
     });
   });
-  describe('err', () => {
+  describe('toErr', () => {
     it('should create an err type', () => {
-      expect(err(5)).toEqual({ type: Type.Err, value: 5, });
+      expect(toErr(5)).toEqual({ type: Type.Err, value: 5, });
     });
   });
   describe('isErr', () => {
     it('should detect an ok', () => {
-      expect(isErr(ok(5))).toBeFalsy();
+      expect(isErr(toOk(5))).toBeFalsy();
     });
     it('should detect an err', () => {
-      expect(isErr(err(5))).toBeTruthy();
+      expect(isErr(toErr(5))).toBeTruthy();
     });
   });
 });
