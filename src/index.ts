@@ -1,44 +1,44 @@
 /**
  * Result represents the output of an operation that may have succeded or failed
  *
- * Result is the discriminated union of the {@link Result.Success} and
- * {@link Result.Fail} types, distinguished by their `type` property
+ * Result is the discriminated union of the {@link Result.Ok} and
+ * {@link Result.Err} types, distinguished by their `type` property
  *
  * To determine the type of a `Result` it's recommended to use one of the
- * [type guard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-guards-and-differentiating-types)
- * functions: {@link Result.isSuccess} or {@link Result.isFail}
+ * @see [type guard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-guards-and-differentiating-types)
+ * functions: {@link Result.isOk} or {@link Result.isErr}
  */
 export type Result<T, F = unknown> =
-  | Result.Success<T>
-  | Result.Fail<F>;
+  | Result.Ok<T>
+  | Result.Err<F>;
 
 /**
  * Fail type
  *
- * @alias {@link Result.Fail}
+ * @alias {@link Result.Err}
  */
-export type Fail<F = unknown> = Result.Fail<F>;
+export type Err<F = unknown> = Result.Err<F>;
 
 /**
  * Success type
  *
- * @alias {@link Result.Success}
+ * @alias {@link Result.Ok}
  */
-export type Success<T> = Result.Success<T>;
+export type Ok<T> = Result.Ok<T>;
 
 export namespace Result {
   /**
    * Type of result
    */
   export enum Type {
-    Success = 'Success',
-    Fail = 'Fail',
+    Ok = 'Ok',
+    Err = 'Err',
   }
 
   /**
    * Base result
    */
-  export interface BaseResult<U, T extends Type> {
+  export interface Base<U, T extends Type> {
     type: T
     value: U
   }
@@ -46,12 +46,12 @@ export namespace Result {
   /**
    * Success type
    */
-  export interface Success<T> extends BaseResult<T, Type.Success> {}
+  export interface Ok<T> extends Base<T, Type.Ok> {}
 
   /**
    * Failure type
    */
-  export interface Fail<F = unknown> extends BaseResult<F, Type.Fail> {}
+  export interface Err<F = unknown> extends Base<F, Type.Err> {}
 
 
   /**
@@ -60,8 +60,8 @@ export namespace Result {
    * @param output    result output
    * @returns         whether the output is a "success" result
    */
-  export function isSuccess<T, F>(output: Result<T, F>): output is Result.Success<T> {
-    return output.type === Result.Type.Success;
+  export function isOk<T, F>(output: Result<T, F>): output is Result.Ok<T> {
+    return output.type === Result.Type.Ok;
   }
 
   /**
@@ -70,8 +70,8 @@ export namespace Result {
    * @param output    result output
    * @returns         whether the output is a "fail" result
    */
-  export function isFail<T, F>(output: Result<T, F>): output is Result.Fail<F> {
-    return output.type === Result.Type.Fail;
+  export function isErr<T, F>(output: Result<T, F>): output is Result.Err<F> {
+    return output.type === Result.Type.Err;
   }
 
   /**
@@ -80,9 +80,9 @@ export namespace Result {
    * @param value     success value
    * @returns         success result
    */
-  export function success<T>(value: T): Result.Success<T> {
+  export function ok<T>(value: T): Result.Ok<T> {
     return {
-      type: Result.Type.Success,
+      type: Result.Type.Ok,
       value,
     };
   }
@@ -93,9 +93,9 @@ export namespace Result {
    * @param value   fail value
    * @returns       fail result
    */
-  export function fail<F>(value: F): Result.Fail<F> {
+  export function err<F>(value: F): Result.Err<F> {
     return {
-      type: Result.Type.Fail,
+      type: Result.Type.Err,
       value,
     };
   }
@@ -113,9 +113,9 @@ export const Type = Result.Type;
  * @param value     success value
  * @returns         success result
  *
- * @alias {@link Result.success}
+ * @alias {@link Result.ok}
  */
-export const success = Result.success;
+export const ok = Result.ok;
 
 /**
  * Create a "fail" result
@@ -123,9 +123,9 @@ export const success = Result.success;
  * @param value   fail value
  * @returns       fail result
  *
- * @alias {@link Result.fail}
+ * @alias {@link Result.err}
  */
-export const fail = Result.fail;
+export const err = Result.err;
 
 /**
  * Is the output a "success" result
@@ -133,9 +133,9 @@ export const fail = Result.fail;
  * @param output    result output
  * @returns         whether the output is a "success" result
  *
- * @alias @see {@link Result.isSuccess}
+ * @alias @see {@link Result.isOk}
  */
-export const isSuccess = Result.isSuccess;
+export const isOk = Result.isOk;
 
 /**
  * Create a "fail" result
@@ -143,6 +143,6 @@ export const isSuccess = Result.isSuccess;
  * @param value   fail value
  * @returns       fail result
  *
- * @alias {@link Result.isFail}
+ * @alias {@link Result.isErr}
  */
-export const isFail = Result.isFail;
+export const isErr = Result.isErr;

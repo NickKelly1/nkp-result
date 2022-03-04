@@ -1,59 +1,59 @@
-import { isFail, isSuccess, Result, success, Type, fail } from '.';
+import { isErr, isOk, Result, ok, Type, err } from '.';
 
 describe('Result', () => {
   // namespaced
-  describe('Result.success', () => {
-    it('should create a success type', () => {
-      expect(Result.success(5)).toEqual({ type: Result.Type.Success, value: 5, });
+  describe('Result.ok', () => {
+    it('should create an ok type', () => {
+      expect(Result.ok(5)).toEqual({ type: Result.Type.Ok, value: 5, });
     });
   });
-  describe('Result.isSuccess', () => {
-    it('should detect a success', () => {
-      expect(Result.isSuccess(Result.success(5))).toBeTruthy();
+  describe('Result.isOk', () => {
+    it('should detect an ok', () => {
+      expect(Result.isOk(Result.ok(5))).toBeTruthy();
     });
-    it('should detect a fail', () => {
-      expect(Result.isSuccess(Result.fail(5))).toBeFalsy();
-    });
-  });
-  describe('Result.fail', () => {
-    it('should create a fail type', () => {
-      expect(Result.fail(5)).toEqual({ type: Result.Type.Fail, value: 5, });
+    it('should detect an err', () => {
+      expect(Result.isOk(Result.err(5))).toBeFalsy();
     });
   });
-  describe('Result.isFalse', () => {
-    it('should detect a success', () => {
-      expect(Result.isFail(Result.success(5))).toBeFalsy();
+  describe('Result.err', () => {
+    it('should create an err type', () => {
+      expect(Result.err(5)).toEqual({ type: Result.Type.Err, value: 5, });
     });
-    it('should detect a fail', () => {
-      expect(Result.isFail(Result.fail(5))).toBeTruthy();
+  });
+  describe('Result.isErr', () => {
+    it('should detect an ok', () => {
+      expect(Result.isErr(Result.ok(5))).toBeFalsy();
+    });
+    it('should detect an err', () => {
+      expect(Result.isErr(Result.err(5))).toBeTruthy();
     });
   });
 
   // not namespaced
-  describe('success', () => {
-    it('should create a success type', () => {
-      expect(success(5)).toEqual({ type: Type.Success, value: 5, });
+  describe('ok', () => {
+    it('should create an ok type', () => {
+      expect(ok(5)).toEqual({ type: Type.Ok, value: 5, });
     });
   });
-  describe('isSuccess', () => {
-    it('should detect a success', () => {
-      expect(isSuccess(success(5))).toBeTruthy();
+  describe('isOk', () => {
+    it('should detect an ok', () => {
+      expect(isOk(ok(5))).toBeTruthy();
     });
-    it('should detect a fail', () => {
-      expect(isSuccess(fail(5))).toBeFalsy();
-    });
-  });
-  describe('fail', () => {
-    it('should create a fail type', () => {
-      expect(fail(5)).toEqual({ type: Type.Fail, value: 5, });
+    it('should detect an err', () => {
+      expect(isOk(err(5))).toBeFalsy();
     });
   });
-  describe('isFalse', () => {
-    it('should detect a success', () => {
-      expect(isFail(success(5))).toBeFalsy();
+  describe('err', () => {
+    it('should create an err type', () => {
+      expect(err(5)).toEqual({ type: Type.Err, value: 5, });
     });
-    it('should detect a fail', () => {
-      expect(isFail(fail(5))).toBeTruthy();
+  });
+  describe('isErr', () => {
+    it('should detect an ok', () => {
+      expect(isErr(ok(5))).toBeFalsy();
+    });
+    it('should detect an err', () => {
+      expect(isErr(err(5))).toBeTruthy();
     });
   });
 });

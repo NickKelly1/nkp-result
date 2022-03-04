@@ -1,5 +1,28 @@
 # Changelog
 
+## 2.0.0 - 2022-03-04
+
+Major release
+
+### Breaking Changes
+
+#### Changed
+
+- `Result.Type.Success` -> `Result.Type.Ok`
+- `Result.Type.Fail` -> `Result.Type.Err`
+- `Result.Success` -> `Result.Ok`
+- `Result.success` -> `Result.ok`
+- `Result.isSuccess` -> `Result.isOk`
+- `Result.Fail` -> `Result.Err`
+- `Result.fail` -> `Result.err`
+- `Result.isFail` -> `Result.isErr`
+- `Success` -> `Ok`
+- `success` -> `ok`
+- `isSuccess` -> `isOk`
+- `Fail` -> `Err`
+- `fail` -> `err`
+- `isFail` -> `isErr`
+
 ## 1.0.4 - 2022-02-07
 
 ### Changed
